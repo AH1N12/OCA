@@ -1,0 +1,16 @@
+
+<div (click)="setActive(true)" (blur)="setActive(false)" class="container" >
+  <div class="row">
+  	<h1>{{folder.name}}</h1>
+    <div class=col-lg-12 *ngFor="let note of folder.notes" >
+    	<note-component [note]="note"></note-component>
+    </div>
+  </div>
+  <div *ngIf="active" class= "row">
+  	<input *ngIf="!folderNameInputEnabled" type="button" class="btn btn-block" value="Add new folder below" (click)="addNewFolderBelowClick()">
+  	<input *ngIf="folderNameInputEnabled" type="text" class="form-control form-control-lg" autofocus (focus)="a()" (blur)="hide()" (keyup)="handleKey($event)">
+  	<!-- <input  type="button" class="btn btn-block" value="input" (click)="a()"> -->
+  </div>
+</div>
+
+
