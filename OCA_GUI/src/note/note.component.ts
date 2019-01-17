@@ -30,7 +30,7 @@ export class NoteComponent implements OnInit {
   a():void{}
 
   setInputEnabled(val: boolean):void{
-  	this.note.active = val;
+  	//this.note.active = val;
   	this.inputEnabled = val;
   }
 }

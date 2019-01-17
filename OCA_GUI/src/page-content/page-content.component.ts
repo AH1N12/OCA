@@ -24,6 +24,9 @@ export class PageContentComponent implements OnInit {
     //while(true) console.log(this.folders)
   }
 
+  setFolderActive(folder: Folder){
+    console.dir('folder',folder);
+  }
 
   initializeFolders() : void {
     this.folderService.getAllFolders((folders)=>{this.folders = folders;console.dir(this.folders)});
