@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Note, Folder } from '../models/models.interface';
 import { FolderService } from '../services/folder-service.service';
+import { FolderComponent } from '../folder/folder.component';
 
 @Component({
   selector: 'page-content',
@@ -10,31 +11,32 @@ import { FolderService } from '../services/folder-service.service';
 export class PageContentComponent implements OnInit {
 
   folders: Folder[] = [];
+  activeFolderComponent: FolderComponent = null;
 
   constructor(private folderService: FolderService) {
-    //folderService.appComponent = this;
   }
-  
+
   ngOnInit() {
-    this.folderService.arrowTest(()=>{console.dir(this.folders)});
-
     this.initializeFolders();
-
-
-    //while(true) console.log(this.folders)
   }
 
-  setFolderActive(folder: Folder){
-    console.dir('folder',folder);
+  //Dostaje folderComponent z eventu, i jesli to nie jest ten aktywny to dezaktywuje aktualny i ustawia otrzymany jako nowy aktywny
+  deactivateOthers(folder: FolderComponent) {
+    if(!this.activeFolderComponent) this.activeFolderComponent = folder;
+    if (!(this.activeFolderComponent === folder)) {
+      this.activeFolderComponent.deactivate();
+      this.activeFolderComponent = folder;
+    }
   }
 
-  initializeFolders() : void {
-    this.folderService.getAllFolders((folders)=>{this.folders = folders;console.dir(this.folders)});
+  //Pobiera foldery z serwera
+  initializeFolders(): void {
+    this.folderService.getAllFolders((folders) => {
+      this.folders = folders;
+      console.dir(this.folders)
+    });
   }
 
- activateFolder(folder):void{
-   console.dir(folder);
- }
 
   createEmptyFolder(name: string): void {
     let folder = {

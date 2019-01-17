@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Note, Folder } from '../models/models.interface';
 import { FolderService} from '../services/folder-service.service';
 
@@ -9,13 +9,24 @@ import { FolderService} from '../services/folder-service.service';
   styleUrls: ['./note.component.css']
 })
 export class NoteComponent implements OnInit {
-  inputEnabled: boolean = false;
+  isActive: boolean = false;
   @Input() note: Note;
+  @Output() active = new EventEmitter < NoteComponent > ()
   
   constructor(private folderService: FolderService) {}
 
   ngOnInit() {
     
+  }
+  //Aktywuje aktualny i emituje event z samym soba, informujacy ze zostal aktywowany
+  public handleClick(){
+    this.isActive = true;
+    this.active.emit(this);
+  }
+
+  //Dezaktywuje aktualny folder, jego notatke i ew input z nazwa nowego folderu
+  public deactivate(): void{
+    this.isActive = false;
   }
 
   handleKey(event): void {
@@ -31,6 +42,6 @@ export class NoteComponent implements OnInit {
 
   setInputEnabled(val: boolean):void{
   	//this.note.active = val;
-  	this.inputEnabled = val;
+  	this.isActive = val;
   }
 }
