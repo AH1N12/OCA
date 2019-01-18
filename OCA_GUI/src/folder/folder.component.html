@@ -1,11 +1,22 @@
 
-<div (click)="handleClick()" (blur)="setActive(false)" class="container" [ngClass]="{'bg-secondary': isActive}">
+<div (click)="handleClick()" (blur)="setActive(false)" class="container folder" [ngClass]="{'folder-active': isActive}">
   <div class="row">
-  	<h1>{{folder.name}}</h1>
+  	<h1 class="folder-name ">{{folder.name}}</h1>
     <div class=col-lg-12 *ngFor="let note of folder.notes" >
     	<note-component [note]="note" (active)="deactivateOthers($event)"></note-component>
     </div>
   </div>
+
+  <!-- Sekcja obslugujaca dodanie dowej notatki -->
+  <div *ngIf="isActive" class="row">
+    <div class="col-lg-12 button-container">
+      <input type="button" class="btn btn-block " value="+" (click)="createNote()">
+    </div>
+  </div>
+
+  <!-- folder-button -->
+  
+
   <!-- Sekcja obslugujaca nowy folder -->
   <!-- <div *ngIf="isActive" class= "row">
   	<input *ngIf="!folderNameInputEnabled" type="button" class="btn btn-block" value="Add new folder below" (click)="addNewFolderBelowClick()">

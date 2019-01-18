@@ -1,0 +1,11 @@
+.note{
+	min-height: 48px;
+	background-color: blue;
+	margin: 0 10px 5px 10px;
+	border-radius: .3rem;
+	font-size: 1.25rem
+}
+
+.mv-5{
+	margin: 5px 0 5px 0;
+}

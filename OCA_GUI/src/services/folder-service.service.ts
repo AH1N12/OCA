@@ -14,11 +14,20 @@ export class FolderService {
   activeFolder: Folder;
   activeNote: Note;
 
-  emptyFolder() {
+  public emptyFolder() {
     return {
       id: null,
       name: null,
       notes: []
+    }
+  }
+
+  public emptyNote(parentFolderId? : number) {
+    return {
+      id: null,
+      tittle: "",
+      value: "",
+      parentFolderId:parentFolderId
     }
   }
 

@@ -47,12 +47,18 @@ export class FolderComponent implements OnInit {
     else this.newFolder.name = event.target.value;
   }
 
-  // createFolder() {
-  //   this.folderNameInputEnabled = false;
+  createFolder() {
+    this.folderNameInputEnabled = false;
 
-  // }
+  }
 
-  //Aktywuje aktualny i emituje event z samym soba, informujacy ze zostal aktywowany
+  //Tworzy notatke, dodaje ja do listy notatek, TODO: zapis do bazy
+  createNote(){
+    this.folder.notes.push(this.folderService.emptyNote(this.folder.id))
+    
+  }
+
+  //Aktywuje aktualny folder i emituje event z samym soba, informujacy ze zostal aktywowany
   public handleClick(){
     this.isActive = true;
     this.active.emit(this);
@@ -63,7 +69,7 @@ export class FolderComponent implements OnInit {
     if(this.activeNoteComponent) this.activeNoteComponent.deactivate(); //todo : usprawnic ew usunac active 
     this.isActive = false;
 
-    // ------------------TODO: dezaktywowac notatke jesli klikne gdzie indziej / znajdz dyrektywe na autofovus
+    // ------------------TODO: dezaktywowac notatke jesli klikne gdzie indziej / znajdz dyrektywe na autofocus
   }
 
 }

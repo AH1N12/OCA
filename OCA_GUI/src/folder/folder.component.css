@@ -1,0 +1,30 @@
+.folder{
+	padding: 5px;
+	background-color: white;
+	margin-top: 5px;
+	border-radius: .25rem;
+}
+
+.folder-active{
+	background-color: grey;
+
+}
+
+.folder-name{
+	background-color: pink;
+	border-radius: .25rem;
+
+}
+
+.folder-button{
+	margin: 0 10px 5px 10px;
+
+}
+
+.button-container{
+	padding: 0 25px 0 25px;
+}
+
+h1{
+	padding: 0 5px 0 5px;
+}
