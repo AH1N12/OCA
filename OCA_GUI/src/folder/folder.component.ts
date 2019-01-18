@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { FolderService } from '../services/folder-service.service';
 import { Note, Folder } from '../models/models.interface';
 import { NoteComponent } from '../note/Note.component';
+import { PageContentComponent } from '../page-content/page-content.component';
 
 @Component({
   selector: 'folder-component',
@@ -16,6 +17,7 @@ export class FolderComponent implements OnInit {
   activeNoteComponent: NoteComponent = null;
 
   @Input() folder: Folder
+  @Input() parent: PageContentComponent
   @Output() active = new EventEmitter < FolderComponent > ()
   constructor(private folderService: FolderService) {
 
@@ -54,8 +56,8 @@ export class FolderComponent implements OnInit {
 
   //Tworzy notatke, dodaje ja do listy notatek, TODO: zapis do bazy
   createNote(){
-    this.folder.notes.push(this.folderService.emptyNote(this.folder.id))
-    
+    this.folder.notes.push(this.folderService.emptyNote(this.folder.id));
+    this.activeNoteComponent.deactivate();
   }
 
   //Aktywuje aktualny folder i emituje event z samym soba, informujacy ze zostal aktywowany

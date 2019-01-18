@@ -1,8 +1,9 @@
 .note{
 	min-height: 48px;
-	background-color: blue;
+	background-color: white;
 	margin: 0 10px 5px 10px;
-	border-radius: .3rem;
+	/*border-radius: .3rem;*/
+	border-bottom: 1px solid grey;
 	font-size: 1.25rem
 }
 

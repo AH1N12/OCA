@@ -3,7 +3,7 @@
   <div class="row">
   	<h1 class="folder-name ">{{folder.name}}</h1>
     <div class=col-lg-12 *ngFor="let note of folder.notes" >
-    	<note-component [note]="note" (active)="deactivateOthers($event)"></note-component>
+    	<note-component [note]="note" [parent]="this" (active)="deactivateOthers($event)"></note-component>
     </div>
   </div>
 

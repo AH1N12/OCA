@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Note, Folder } from '../models/models.interface';
 import { FolderService} from '../services/folder-service.service';
+import { FolderComponent} from '../folder/folder.component';
 
 
 @Component({
@@ -11,12 +12,13 @@ import { FolderService} from '../services/folder-service.service';
 export class NoteComponent implements OnInit {
   isActive: boolean = false;
   @Input() note: Note;
+  @Input() parent: FolderComponent;
   @Output() active = new EventEmitter < NoteComponent > ()
   
   constructor(private folderService: FolderService) {}
 
   ngOnInit() {
-    
+    this.isActive=true;
   }
   //Aktywuje aktualny i emituje event z samym soba, informujacy ze zostal aktywowany
   public handleClick(){
@@ -24,8 +26,8 @@ export class NoteComponent implements OnInit {
     this.active.emit(this);
   }
 
-  //Dezaktywuje aktualny folder, jego notatke i ew input z nazwa nowego folderu
-  public deactivate(): void{
+  //Dezaktywuje sie
+  public deactivate(): void{ 
     this.isActive = false;
   }
 
