@@ -1,24 +1,22 @@
 package AH1N1.OCA.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import java.util.List;
 
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FolderDto {
+public class CategoryDto {
 
     private Long id;
 
     private String name;
 
-    private Integer position;
+//    private List<FolderDto> folders;
 
-    private Long categoryId;
-
-    private List<NoteDto> notes;
 }

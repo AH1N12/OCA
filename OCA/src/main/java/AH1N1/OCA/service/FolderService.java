@@ -1,17 +1,43 @@
 package AH1N1.OCA.service;
 
+import AH1N1.OCA.repo.CategoryReposiotory;
+import AH1N1.OCA.repo.FolderRepository;
 import AH1N1.OCA.repo.entiity.Folder;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
-public interface FolderService {
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class FolderService {
 
+    private final FolderRepository folderRepository;
+    private final CategoryReposiotory categoryReposiotory;
 
-    List<Folder> getAllFolders();
+    public List<Folder> getAllFoldersByCategoryId(Long categoryId) {
+        return folderRepository.findByCategoryId(categoryId);
+    }
 
-    Folder getFolder(Long folderId);
+    public Folder createNewFolderInCategory(Long categoryId, Folder folder) {
+        return categoryReposiotory.findById(categoryId).map(category -> {
+            folder.setCategory(category);
+            folder.setId(null);
+            return folderRepository.save(folder);
+        }).orElseThrow(() -> new RuntimeException("CategoryId " + categoryId + " not found"));
+    }
 
-    Folder saveFolder(Folder folder);
+    public Folder updateFolderInCategory(Long categoryId, Folder folder) {
+        if (!categoryReposiotory.existsById(categoryId))
+            throw new RuntimeException("CategoryId " + categoryId + " not found");
+
+        if (Objects.isNull(folder.getId())) throw new RuntimeException("FolderId can not be null");
+        return folderRepository.findById(folder.getId()).map(folderFound -> {
+            folderFound.setName(folder.getName());
+            folderFound.setPosition(folder.getPosition());
+            return folderRepository.save(folderFound);
+        }).orElseThrow(() -> new RuntimeException("FolderId " + folder.getId() + " not found"));
+    }
 }
