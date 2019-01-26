@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 public class Folder {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -29,4 +29,6 @@ public class Folder {
     @JsonIgnore
     private Category category;
 
+    @Column(name = "cetegory_id", updatable = false, insertable = false)
+    private Long categoryId;
 }

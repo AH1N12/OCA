@@ -3,17 +3,23 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PageContentComponent }    from '../page-content/page-content.component';
+// import { PageContentComponent }    from '../page-content/page-content.component';
 import { FolderComponent } from '../folder/folder.component';
 import { NoteComponent } from '../note/note.component';
 import { HttpClientModule }    from '@angular/common/http';
+import { CategoryComponent } from '../category/category.component';
+import { CategoriesComponent } from '../categories/categories.component';
+import { AutofocusDirective } from '../directive/autofocus.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     FolderComponent,
     NoteComponent,
-    PageContentComponent
+    // PageContentComponent,
+    CategoryComponent,
+    CategoriesComponent,
+    AutofocusDirective
   ],
   imports: [
     BrowserModule,

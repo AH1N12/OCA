@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TestController {
 
-    private final FolderRepository folderRepository;
-    private final NoteRepository noteRepository;
-    private final CategoryReposiotory categoryReposiotory;
-
-    @GetMapping("/test")
-    public void test() {
-        Category c = new Category(null, "Kategoria", null);
-        categoryReposiotory.save(c);
-    }
+//    private final FolderRepository folderRepository;
+//    private final NoteRepository noteRepository;
+//    private final CategoryReposiotory categoryReposiotory;
+//
+//    @GetMapping("/test")
+//    public void test() {
+//        Category c = new Category(null, "Kategoria", null);
+//        categoryReposiotory.save(c);
+//    }
 }

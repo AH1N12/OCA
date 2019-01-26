@@ -1,10 +1,11 @@
 .note{
-	min-height: 48px;
-	background-color: white;
-	margin: 0 10px 5px 10px;
+	background-color: gray;
+	margin: 0 10px 0 10px;
 	/*border-radius: .3rem;*/
-	border-bottom: 1px solid grey;
-	font-size: 1.25rem
+	border-bottom: 1px solid black;
+	font-size: 1.25rem;
+	/*display: table-cell;*/
+	min-height: 48px;
 }
 
 .mv-5{

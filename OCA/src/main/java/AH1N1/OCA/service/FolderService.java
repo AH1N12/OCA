@@ -25,7 +25,9 @@ public class FolderService {
         return categoryReposiotory.findById(categoryId).map(category -> {
             folder.setCategory(category);
             folder.setId(null);
-            return folderRepository.save(folder);
+            Folder result = folderRepository.save(folder);
+            result.setCategoryId(categoryId);//bo jpa zwraca null
+            return result;
         }).orElseThrow(() -> new RuntimeException("CategoryId " + categoryId + " not found"));
     }
 

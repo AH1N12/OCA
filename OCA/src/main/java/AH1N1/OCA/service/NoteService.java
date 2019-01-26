@@ -1,11 +1,9 @@
 package AH1N1.OCA.service;
 
-import AH1N1.OCA.model.NoteDto;
 import AH1N1.OCA.repo.FolderRepository;
 import AH1N1.OCA.repo.NoteRepository;
 import AH1N1.OCA.repo.entiity.Note;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +15,7 @@ import java.util.Objects;
 public class NoteService /*implements NoteService, Helper*/ {
 
     private final NoteRepository noteRepository;
-    private FolderRepository folderRepository;
+    private final FolderRepository folderRepository;
 
 
     public List<Note> getAllNotesByFolderId(Long folderId) {
@@ -28,7 +26,9 @@ public class NoteService /*implements NoteService, Helper*/ {
         return folderRepository.findById(folderId).map(folder -> {
             note.setFolder(folder);
             note.setId(null);
-            return noteRepository.save(note);
+            Note result = noteRepository.save(note);
+            result.setFolderId(folderId);// bop jpa zwraca nulla
+            return result;
         }).orElseThrow(() -> new RuntimeException("FolderId " + folderId + " not found"));
     }
 

@@ -1,27 +1,33 @@
-
-<div (click)="handleClick()" (blur)="setActive(false)" class="container folder" [ngClass]="{'folder-active': isActive}">
-  <div class="row">
-  	<h1 class="folder-name ">{{folder.name}}</h1>
-    <div class=col-lg-12 *ngFor="let note of folder.notes" >
-    	<note-component [note]="note" [parent]="this" (active)="deactivateOthers($event)"></note-component>
+<div>
+  <h1 class="folder-name">{{folder.name}} {{folder.position}} {{folder.categoryId}}</h1>
+  <div class="container-fluid folder">
+    <div class="row" *ngFor="let note of notes">
+      <div class="col-lg-12">
+        <note [note]="note"></note>
+      </div>
     </div>
   </div>
-
-  <!-- Sekcja obslugujaca dodanie dowej notatki -->
-  <div *ngIf="isActive" class="row">
-    <div class="col-lg-12 button-container">
-      <input type="button" class="btn btn-block " value="+" (click)="createNote()">
-    </div>
-  </div>
-
-  <!-- folder-button -->
-  
-
-  <!-- Sekcja obslugujaca nowy folder -->
-  <!-- <div *ngIf="isActive" class= "row">
-  	<input *ngIf="!folderNameInputEnabled" type="button" class="btn btn-block" value="Add new folder below" (click)="addNewFolderBelowClick()">
-  	<input *ngIf="folderNameInputEnabled" type="text" class="form-control form-control-lg" autofocus (focus)="a()" (keyup)="handleKey($event)">
-  </div> -->
 </div>
 
 
+
+
+<!-- <div (click)="handleClick()" (blur)="setActive(false)" class="container folder" [ngClass]="{'folder-active': isActive}"> -->
+<!--   <div class="row">
+    <h1 class="folder-name ">{{folder.name}}</h1>
+    <div class=col-lg-12 *ngFor="let note of folder.notes" >
+      <note-component [note]="note" [parent]="this" (active)="deactivateOthers($event)"></note-component>
+    </div>
+  </div> -->
+<!--   <div *ngIf="isActive" class="row">
+    <div class="col-lg-12 button-container">
+      <input type="button" class="btn btn-block " value="+" (click)="createNote()">
+    </div>
+  </div> -->
+<!-- folder-button -->
+<!-- Sekcja obslugujaca nowy folder -->
+<!-- <div *ngIf="isActive" class= "row">
+    <input *ngIf="!folderNameInputEnabled" type="button" class="btn btn-block" value="Add new folder below" (click)="addNewFolderBelowClick()">
+    <input *ngIf="folderNameInputEnabled" type="text" class="form-control form-control-lg" autofocus (focus)="a()" (keyup)="handleKey($event)">
+  </div> -->
+<!-- </div> -->

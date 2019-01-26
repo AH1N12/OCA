@@ -1,0 +1,17 @@
+<div class="container" style="background-color: pink;">
+  <div class="row">
+    <div *ngFor="let category of categories" class="col-lg-4 tile-wrapper">
+    	<div class="tile" [routerLink]="['/categories', category.id]">
+    		{{category.name}}
+    	</div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="container" style="background-color: pink;">
+  <div class="row">
+    <category *ngFor="let category of categories" [category]="category" class="col-lg-4"></category>
+  </div>
+</div> -->

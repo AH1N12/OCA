@@ -16,11 +16,12 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class Note {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "value", length = 1024)
+    @NotNull
     private String value;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -28,4 +29,7 @@ public class Note {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Folder folder;
+
+    @Column(name = "folder_id", updatable = false, insertable = false)
+    private Long folderId;
 }

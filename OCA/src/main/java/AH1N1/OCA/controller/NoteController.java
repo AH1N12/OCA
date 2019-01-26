@@ -1,7 +1,5 @@
 package AH1N1.OCA.controller;
 
-import AH1N1.OCA.model.NoteDto;
-import AH1N1.OCA.repo.entiity.Folder;
 import AH1N1.OCA.repo.entiity.Note;
 import AH1N1.OCA.service.NoteService;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +16,13 @@ public class NoteController {
 
     private final NoteService noteService;
 
-    @GetMapping(value = "/all")
+    @GetMapping()
     public List<Note> getAllNotesByFolderId(@PathVariable Long folderId){
         return noteService.getAllNotesByFolderId(folderId);
     }
 
     @PostMapping( produces = "application/json", consumes = "application/json")
-    public Note createNewNoteInFolder(@PathVariable Long folderId, @Valid Note note){
+    public Note createNewNoteInFolder(@PathVariable Long folderId, @Valid @RequestBody Note note){
         return noteService.createNewNoteInFolder(folderId, note);
     }
 

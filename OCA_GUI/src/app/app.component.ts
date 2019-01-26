@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { PageContentComponent } from '../page-content/page-content.component';
+// import { PageContentComponent } from '../page-content/page-content.component';
+import { DataService } from '../services/data.service';
 
 
 
@@ -10,9 +11,11 @@ import { PageContentComponent } from '../page-content/page-content.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  categories: any[];
+  constructor(private dataService: DataService) {}
 
-  constructor() { }
-
-  ngOnInit() {}
+  ngOnInit() {
+  	this.dataService.getAllCategories((data)=>{this.categories=data});
+  }
 
 }

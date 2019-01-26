@@ -11,35 +11,35 @@ import { Note, Folder } from '../models/models.interface';
 })
 export class FolderService {
   
-  activeFolder: Folder;
-  activeNote: Note;
+  // activeFolder: Folder;
+  // activeNote: Note;
 
-  public emptyFolder() {
-    return {
-      id: null,
-      name: null,
-      notes: []
-    }
-  }
+  // public emptyFolder() {
+  //   return {
+  //     id: null,
+  //     name: null,
+  //     notes: []
+  //   }
+  // }
 
-  public emptyNote(parentFolderId? : number) {
-    return {
-      id: null,
-      tittle: "",
-      value: "",
-      parentFolderId:parentFolderId
-    }
-  }
+  // public emptyNote(parentFolderId? : number) {
+  //   return {
+  //     id: null,
+  //     tittle: "",
+  //     value: "",
+  //     parentFolderId:parentFolderId
+  //   }
+  // }
 
-  setActiveFolder(folder): void {
-    // this.activeFolder.
-  }
+  // setActiveFolder(folder): void {
+  //   // this.activeFolder.
+  // }
 
-  getAllFolders(callback): void {
-    this.httpService.getAllFolders().subscribe(obj => callback(obj));
-  }
+  // getAllFolders(callback): void {
+  //   this.httpService.getAllFolders().subscribe(obj => callback(obj));
+  // }
 
-  arrowTest(func): void{ func();}
+  // arrowTest(func): void{ func();}
   
 
   constructor(private httpService: HttpService) {}

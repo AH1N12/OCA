@@ -17,36 +17,36 @@ export class PageContentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.initializeFolders();
+    // this.initializeFolders();
   }
 
-  //Dostaje folderComponent z eventu, i jesli to nie jest ten aktywny to dezaktywuje aktualny i ustawia otrzymany jako nowy aktywny
-  deactivateOthers(folder: FolderComponent) {
-    if(!this.activeFolderComponent) this.activeFolderComponent = folder;
-    if (!(this.activeFolderComponent === folder)) {
-      this.activeFolderComponent.deactivate();
-      this.activeFolderComponent = folder;
-    }
-  }
+  // //Dostaje folderComponent z eventu, i jesli to nie jest ten aktywny to dezaktywuje aktualny i ustawia otrzymany jako nowy aktywny
+  // deactivateOthers(folder: FolderComponent) {
+  //   if(!this.activeFolderComponent) this.activeFolderComponent = folder;
+  //   if (!(this.activeFolderComponent === folder)) {
+  //     this.activeFolderComponent.deactivate();
+  //     this.activeFolderComponent = folder;
+  //   }
+  // }
 
-  //Pobiera foldery z serwera
-  initializeFolders(): void {
-    this.folderService.getAllFolders((folders) => {
-      this.folders = folders;
-      console.dir(this.folders)
-    });
-  }
+  // //Pobiera foldery z serwera
+  // initializeFolders(): void {
+  //   this.folderService.getAllFolders((folders) => {
+  //     this.folders = folders;
+  //     console.dir(this.folders)
+  //   });
+  // }
 
 
-  createEmptyFolder(name: string): void {
-    let folder = {
-      id: null,
-      name: name,
-      notes: []
-    }
+  // createEmptyFolder(name: string): void {
+  //   let folder = {
+  //     id: null,
+  //     name: name,
+  //     notes: []
+  //   }
 
-    this.folders.push(folder);
-    console.dir(this.folders)
-  }
+  //   this.folders.push(folder);
+  //   console.dir(this.folders)
+  // }
 
 }

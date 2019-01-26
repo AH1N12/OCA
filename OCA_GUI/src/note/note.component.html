@@ -1,8 +1,13 @@
+<div class="note" (click)="activateNote()">
+  <div *ngIf="!isActive" class="col-12">{{note.value}}</div>
+  <input *ngIf="isActive" value="{{note.value}}" autoFocus="" type="text" class="form-control form-control-lg col-12" (keyup)="handleKey($event)">
+</div>
 
-<div  class= "row note" (click)="handleClick()">
-  	<!-- <input *ngIf="!folderNameInputEnabled" type="button" class="btn btn-block" value="Add new folder below" (click)="addNewFolderBelowClick()"> -->
-  	
-  	<div *ngIf="!isActive" class="col-12">{{note.value}}</div>
-  	<input *ngIf="isActive" value="{{note.value}}" type="textarea" class="form-control form-control-lg col-12" autofocus (focus)="a()" (blur)="setInputEnabled(false)" (keyup)="handleKey($event)">
-  	<!-- <input  type="button" class="btn btn-block" value="input" (click)="a()"> -->
- </div>
+
+
+<!-- <div  class= "row note" (click)="handleClick()"> -->
+<!-- <input *ngIf="!folderNameInputEnabled" type="button" class="btn btn-block" value="Add new folder below" (click)="addNewFolderBelowClick()"> -->
+<!-- <div *ngIf="!isActive" class="col-12">{{note.value}}</div>
+  	<input *ngIf="isActive" value="{{note.value}}" type="textarea" class="form-control form-control-lg col-12" autofocus (focus)="a()" (blur)="setInputEnabled(false)" (keyup)="handleKey($event)"> -->
+<!-- <input  type="button" class="btn btn-block" value="input" (click)="a()"> -->
+<!-- </div> -->

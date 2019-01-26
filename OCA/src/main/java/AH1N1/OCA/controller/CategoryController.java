@@ -1,6 +1,5 @@
 package AH1N1.OCA.controller;
 
-import AH1N1.OCA.model.CategoryDto;
 import AH1N1.OCA.repo.entiity.Category;
 import AH1N1.OCA.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -12,24 +11,23 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-@RequestMapping(value = "/category")
+@RequestMapping(value = "/category", produces = "application/json", consumes = "application/json")
 public class CategoryController {
 
     private final CategoryService categoryService;
 
-    @GetMapping(value = "/all", produces = "application/json")
-    public List<CategoryDto> getAll() {
-        return categoryService.getAll();
+    @GetMapping
+    public List<Category> getAllCategories() {
+        return categoryService.getAllCategories();
     }
 
-    @PostMapping(value = "save", produces = "application/json", consumes = "application/json")
-    public CategoryDto save(@Valid @RequestBody CategoryDto category) {
-        return categoryService.save(category);
+    @PostMapping
+    public Category createNewCategory(@Valid @RequestBody Category category) {
+        return categoryService.createNewCategory(category);
     }
 
-    @GetMapping(value = "/{id}")
-    public CategoryDto get(@PathVariable Long id) {
-        return categoryService.get(id);
-
+    @PutMapping
+    public Category updateCategoryById(@Valid @RequestBody Category category) {
+        return categoryService.updateCategoryById(category);
     }
 }

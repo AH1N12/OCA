@@ -8,7 +8,13 @@ export interface Note{
 export interface Folder {
     id: number
     name: string,
+    position: number,
     notes: Note[];
+}
+
+export interface Category {
+    id: number
+    name: string;
 }
 
 // export class Note{

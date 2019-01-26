@@ -1,8 +1,9 @@
 .folder{
 	padding: 5px;
-	background-color: white;
-	margin-top: 5px;
-	border-radius: .25rem;
+	background-color: gray;
+	/*margin-top: 5px;*/
+	border-radius: 0 0 .25rem .25rem;
+	min-height: 200px;
 }
 
 .folder-active{
@@ -12,7 +13,7 @@
 
 .folder-name{
 	background-color: pink;
-	border-radius: .25rem;
+	border-radius: .25rem .25rem 0 0;
 
 }
 
@@ -27,4 +28,5 @@
 
 h1{
 	padding: 0 5px 0 5px;
+	margin-bottom: 5px; 
 }

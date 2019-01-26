@@ -1,0 +1,12 @@
+<!-- <div  class="tile" style="background-color: red;" (click)="goToCategory()" [routerLink]="['/categories', category.id]">
+	{{category.name}}
+</div>
+ -->
+<h1>categoryId: {{categoryId}}</h1>
+<div class="container-fluid">
+  <div class="row" *ngFor="let folder of folders">
+    <div class="col-lg-8">
+      <folder [folder]="folder"></folder>
+    </div>
+  </div>
+</div>
