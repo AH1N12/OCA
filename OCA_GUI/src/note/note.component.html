@@ -1,6 +1,7 @@
 <div class="note" (click)="activateNote()">
-  <div *ngIf="!isActive" class="col-12">{{note.value}}</div>
-  <input *ngIf="isActive" value="{{note.value}}" autoFocus="" type="text" class="form-control form-control-lg col-12" (keyup)="handleKey($event)">
+  <p *ngIf="!isActive" class="col-12 text-holder">{{note.value}}</p>
+  <input *ngIf="isActive" value="{{note.value}}" autoFocus type="text" class="form-control form-control-lg col-12"
+   (keyup)="handleKey($event)" (blur)="deactivate()">
 </div>
 
 

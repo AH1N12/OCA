@@ -1,8 +1,8 @@
 export interface Note{
 	id: number,
-	tittle: string,
 	value: string,
-	parentFolderId: number;
+	folderId: number,
+    isNew:boolean;
 }
 
 export interface Folder {

@@ -5,9 +5,12 @@
 	border-bottom: 1px solid black;
 	font-size: 1.25rem;
 	/*display: table-cell;*/
-	min-height: 48px;
+	min-height: 38px;
 }
 
 .mv-5{
 	margin: 5px 0 5px 0;
+}
+.text-holder{
+	padding-top:10px;
 }

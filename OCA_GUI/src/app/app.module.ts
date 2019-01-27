@@ -10,6 +10,7 @@ import { HttpClientModule }    from '@angular/common/http';
 import { CategoryComponent } from '../category/category.component';
 import { CategoriesComponent } from '../categories/categories.component';
 import { AutofocusDirective } from '../directive/autofocus.directive';
+import { NavigationComponent } from '../navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AutofocusDirective } from '../directive/autofocus.directive';
     // PageContentComponent,
     CategoryComponent,
     CategoriesComponent,
-    AutofocusDirective
+    AutofocusDirective,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,

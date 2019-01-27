@@ -7,16 +7,16 @@ import { Note, Folder, Category } from '../models/models.interface';
 })
 export class DataService {
 
-  categoryId:number;
+  categoryId: number;
   constructor(private httpService: HttpService) {}
 
-  public setCategoryId(categoryId:number){
-    this.categoryId=categoryId;
+  public setCategoryId(categoryId: number) {
+    this.categoryId = categoryId;
     console.log('HttpService: categoryId set to: ', this.categoryId)
   }
 
-  checkCategoryId(){
-    if(!this.categoryId) throw 'HttpService: categoryId must be set';
+  checkCategoryId() {
+    if (!this.categoryId) throw 'HttpService: categoryId must be set';
   }
 
   //GET
@@ -42,5 +42,13 @@ export class DataService {
     this.checkCategoryId();
     return this.httpService.updateNoteInFolder(this.categoryId, note.folderId, note).subscribe(data => callback(data));
   }
+
+  //PUSH
+
+  public createNoteInFolder(note, callback) {
+    this.checkCategoryId();
+    return this.httpService.createNoteInFolder(this.categoryId, note.folderId, note).subscribe(data => callback(data));
+  }
+
 
 }

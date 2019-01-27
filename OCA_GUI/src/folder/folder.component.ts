@@ -12,25 +12,34 @@ import { NoteComponent } from '../note/Note.component';
   styleUrls: ['./folder.component.css'],
   providers: [CommunicatorFolderNotesService]
 })
-export class FolderComponent implements OnInit {
+export class FolderComponent implements OnInit, OnDestroy {
 
   @Input() folder: Folder;
   //ew jesli zdecyduje sie zeby folder nie zawieral categoryId to przekazac je jako @Input()
   notes: Note[];
-  subscription: Subscription;
+  noteActiveSub: Subscription;
+  emptyNoteSub: Subscription;
+  newNoteSub: Subscription;
   activeNoteId: number = null;
-  constructor(private dataService: DataService, private communicatorFolderNotes: CommunicatorFolderNotesService) {
+  constructor(private dataService: DataService, private communicatorFolderNotes: CommunicatorFolderNotesService, private communicatorService: CommunicatorService) {
 
   }
 
+
+  //TODO: rozpoznawac subskrybcje np po jakims id (serwis zwraca 1 subskrybcje, ale kazda metoda push przekazuje dodatkowo jakis id)
   ngOnInit() {
-    this.subscription = this.communicatorFolderNotes.noteActivePull().subscribe(id => { this.activateNote(id); });
+    this.noteActiveSub = this.communicatorFolderNotes.noteActivePull().subscribe(id => { this.activateNote(id); });
+    this.emptyNoteSub = this.communicatorService.emptyNotePull().subscribe(id => { this.createEmptyNote(id); });
+    this.newNoteSub = this.communicatorFolderNotes.newNotePull().subscribe(note => { this.registerNewNote(note); });
     //ew zeby zoptymalizowac mozna zwracac notes w getAllFoldersForCategoryId
     this.getAllNotes();
   }
 
+
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.noteActiveSub.unsubscribe();
+    this.emptyNoteSub.unsubscribe();
+    this.newNoteSub.unsubscribe();
   }
 
   activateNote(id) {
@@ -41,6 +50,15 @@ export class FolderComponent implements OnInit {
     this.activeNoteId = id;
   }
 
+  createEmptyNote(id) {
+    if (id == this.folder.id) {
+      this.notes.push(this.newNote());
+    }
+  }
+
+  setActive() {
+    this.communicatorService.setCurrentFolder(this.folder.id);
+  }
 
   getAllNotes() {
     this.dataService.getAllNotesForFolderId(this.folder.id, (data) => {
@@ -51,6 +69,28 @@ export class FolderComponent implements OnInit {
   }
 
 
+  registerNewNote(note) {
+    alert(note);
+    if (note.value.length > 0) {
+      this.dataService.createNoteInFolder(note, (data) => {
+        //TODO: zdecydowac sie jak mam byc aktywowana i deaktywowana notka- preferowany focus (chyba focus i enter na raz sie aktywuja)
+        //TODO: znajdz w tablicy note.inNew=true i podmien ja na zwrocona notatke
+        //TODO: rozpoznawac subskrybcje np po jakims id (serwis zwraca 1 subskrybcje, ale kazda metoda push przekazuje dodatkowo jakis id)
+        //TODO:  jesli notka null to usuwaj
+      })
+    }
+  }
+
+
+  newNote(): Note {
+    return {
+      id: null,
+      isNew: true,
+      value: "",
+      folderId: this.folder.id
+    }
+
+alert(note);  }
 
   // folderNameInputEnabled: boolean = false;
   // newFolder: Folder;

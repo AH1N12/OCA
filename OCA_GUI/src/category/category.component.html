@@ -2,10 +2,10 @@
 	{{category.name}}
 </div>
  -->
-<h1>categoryId: {{categoryId}}</h1>
-<div class="container-fluid">
+
+<div class="container">
   <div class="row" *ngFor="let folder of folders">
-    <div class="col-lg-8">
+    <div class="col-lg-12">
       <folder [folder]="folder"></folder>
     </div>
   </div>

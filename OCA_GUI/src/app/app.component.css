@@ -1,3 +1,45 @@
-.mv-5{
-	margin: 5px 0 5px 0;
+.mv-5 {
+  margin: 5px 0 5px 0;
+}
+
+.nav-bar-left {
+  height: 100px;
+  background-color: pink;
+}
+
+
+.my-container {
+  margin-top: 100px;
+}
+
+@media (min-width: 768px) {
+  .nav-bar-left {
+    height: auto;
+    width: 150px;
+    background-color: pink;
+  }
+
+  .my-container {
+    margin-top: 0;
+    margin-left: 150px;
+  }
+}
+
+
+/*@media (min-width: 992px) and (max-width: 1199.98px) { 
+	.my-container {
+  	margin-top: 0;
+    
+  }
+ }
+*/
+
+@media (min-width: 1420px) {
+  .my-container {
+    margin-top: 0;
+
+    margin-left: auto;
+  }
+
+
 }

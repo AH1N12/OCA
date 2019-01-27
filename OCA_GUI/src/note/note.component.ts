@@ -14,6 +14,7 @@ import { Note, Folder } from '../models/models.interface';
 export class NoteComponent implements OnInit {
 
   @Input() note: Note;
+  @Input() parentFolderId: Note;
   isActive: boolean = false;
   noteValBeforeUpdate: string;
   subscription: Subscription;
@@ -22,10 +23,11 @@ export class NoteComponent implements OnInit {
   ngOnInit() {
     this.noteValBeforeUpdate = this.note.value;
     this.subscription = this.communicatorFolderNotes.noteUnactivePull().subscribe(id => { this.handleDeactivationEvent(id); });
+    if(this.note.isNew) this.activateNote(); 
   }
 
   handleDeactivationEvent(noteId: number) {
-    if (this.note.id != noteId) this.deactivate();
+    // if (this.note.id != noteId) this.deactivate();
   }
 
   handleKey(event) {
@@ -34,13 +36,16 @@ export class NoteComponent implements OnInit {
   }
 
   activateNote() {
-    this.communicatorFolderNotes.noteActivePush(this.note.id);
-    this.isActive = true;
+    if (!this.isActive) {
+      this.communicatorFolderNotes.noteActivePush(this.note.id);
+      this.isActive = true;
+    }
   }
 
-  deactivate() {
+  deactivate() { //TODO: metoda jest wywolywana zarownoi przez serwis jak i blura- nalezy zdecydowac sie na ktores rozwiazanie
     this.isActive = false;
-    this.updateNote()
+    if (this.note.isNew) this.registerNewNote();
+    else this.updateNote()
   }
 
   updateNote() {
@@ -48,6 +53,11 @@ export class NoteComponent implements OnInit {
       this.dataService.updateNoteInFolder(this.note, (updatedNote) => { this.note = updatedNote; })
     }
     this.noteValBeforeUpdate = this.note.value;
+  }
+
+  registerNewNote() {
+    console.dir(this.note)
+    this.communicatorFolderNotes.newNotePush(this.note);
   }
 
 

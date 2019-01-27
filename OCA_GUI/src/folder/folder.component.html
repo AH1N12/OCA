@@ -1,6 +1,6 @@
-<div>
-  <h1 class="folder-name">{{folder.name}} {{folder.position}} {{folder.categoryId}}</h1>
-  <div class="container-fluid folder">
+<div (click)="setActive()">
+  <h1 class="folder-name rounded-top">{{folder.name}} {{folder.position}} {{folder.categoryId}}</h1>
+  <div class="container-fluid folder rounded-bottom">
     <div class="row" *ngFor="let note of notes">
       <div class="col-lg-12">
         <note [note]="note"></note>

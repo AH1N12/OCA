@@ -55,6 +55,18 @@ export class HttpService {
   }
 
 
+  //PUSH
+  createNoteInFolder(categoryId, folderId, note ): Observable < Folder > {
+    return this.http.post < Folder > (baseUrl + categoryId + '/folder/' + folderId + '/note', note, httpOptions)
+      .pipe(
+        tap(() => console.log('POST: createNoteInFolder : ', note)),
+        catchError(this.handleError < any > ('createNoteInFolder', {}))
+      );
+  }
+  
+
+
+
   // OLD
   saveFolder(folder: Folder): Observable < Folder > {
     return this.http.post < Folder > (baseUrl + 'save', folder, httpOptions)
