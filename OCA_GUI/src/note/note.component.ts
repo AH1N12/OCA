@@ -27,11 +27,12 @@ export class NoteComponent implements OnInit {
   }
 
   handleDeactivationEvent(noteId: number) {
+    console.log("handleDeactivationEvent CIAGLE DZIALA!!!!")
     // if (this.note.id != noteId) this.deactivate();
   }
 
   handleKey(event) {
-    if (event.keyCode == 13) this.deactivate();
+    if (event.keyCode == 13) this.isActive=false;
     else this.note.value = event.target.value;
   }
 
@@ -42,62 +43,62 @@ export class NoteComponent implements OnInit {
     }
   }
 
-  deactivate() { //TODO: metoda jest wywolywana zarownoi przez serwis jak i blura- nalezy zdecydowac sie na ktores rozwiazanie
+  deactivate() { //TODO: metoda jest wywolywana zarownoi przez serwis, enter, jak i blura- nalezy zdecydowac sie na ktores rozwiazanie
     this.isActive = false;
     if (this.note.isNew) this.registerNewNote();
     else this.updateNote()
   }
 
-  updateNote() {
-    if (this.noteValBeforeUpdate != this.note.value) {
-      this.dataService.updateNoteInFolder(this.note, (updatedNote) => { this.note = updatedNote; })
-    }
-    this.noteValBeforeUpdate = this.note.value;
+updateNote() {
+  if (this.noteValBeforeUpdate != this.note.value) {
+    this.dataService.updateNoteInFolder(this.note, (updatedNote) => { this.note = updatedNote; })
   }
+  this.noteValBeforeUpdate = this.note.value;
+}
 
-  registerNewNote() {
-    console.dir(this.note)
-    this.communicatorFolderNotes.newNotePush(this.note);
-  }
+registerNewNote() {
+  console.dir(this.note)
+  this.communicatorFolderNotes.newNotePush(this.note);
+}
 
 
 
 
 
-  //  isActive: boolean = false;
-  //  @Input() note: Note;
-  //  @Input() parent: FolderComponent;
-  //  @Output() active = new EventEmitter < NoteComponent > ()
+//  isActive: boolean = false;
+//  @Input() note: Note;
+//  @Input() parent: FolderComponent;
+//  @Output() active = new EventEmitter < NoteComponent > ()
 
-  //  constructor(private folderService: FolderService) {}
+//  constructor(private folderService: FolderService) {}
 
-  //  ngOnInit() {
+//  ngOnInit() {
   //    this.isActive=true;
   //  }
   //  //Aktywuje aktualny i emituje event z samym soba, informujacy ze zostal aktywowany
   //  public handleClick(){
-  //    this.isActive = true;
-  //    this.active.emit(this);
-  //  }
+    //    this.isActive = true;
+    //    this.active.emit(this);
+    //  }
 
-  //  //Dezaktywuje sie
-  //  public deactivate(): void{ 
-  //    this.isActive = false;
-  //  }
+    //  //Dezaktywuje sie
+    //  public deactivate(): void{ 
+      //    this.isActive = false;
+      //  }
 
-  //  handleKey(event): void {
-  // if(event.keyCode==13) this.saveNote();
-  //    else this.note.value =  event.target.value;
-  //  }
+      //  handleKey(event): void {
+        // if(event.keyCode==13) this.saveNote();
+        //    else this.note.value =  event.target.value;
+        //  }
 
-  //  saveNote():void{
-  //    this.setInputEnabled(false);
+        //  saveNote():void{
+          //    this.setInputEnabled(false);
 
-  //  }
-  //  a():void{}
+          //  }
+          //  a():void{}
 
-  //  setInputEnabled(val: boolean):void{
-  //    //this.note.active = val;
-  //    this.isActive = val;
-  //  }
-}
+          //  setInputEnabled(val: boolean):void{
+            //    //this.note.active = val;
+            //    this.isActive = val;
+            //  }
+          }

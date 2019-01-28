@@ -89,8 +89,7 @@ export class FolderComponent implements OnInit, OnDestroy {
       value: "",
       folderId: this.folder.id
     }
-
-alert(note);  }
+  }
 
   // folderNameInputEnabled: boolean = false;
   // newFolder: Folder;
